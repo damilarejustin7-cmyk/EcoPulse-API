@@ -36,6 +36,15 @@ class AllocationSerializer(serializers.ModelSerializer):
             'site', 'site_name', 'checkout_date', 'return_date'
         ]
 
+    def validate(self, data):
+        """Check that the return date is after the checkout date."""
+        # Used 'checkout_date' instead of 'start_date'
+        if data.get('return_date') and data.get('return_date') < data.get('checkout_date'):
+            raise serializers.ValidationError({
+                "return_date": "The return date cannot be before the checkout date!"
+            })
+        return data
+
 class MetricTypeSerializer(serializers.ModelSerializer):        
     class Meta:
         model = MetricType
