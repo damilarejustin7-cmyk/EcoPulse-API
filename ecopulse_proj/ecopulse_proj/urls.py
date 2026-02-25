@@ -16,8 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.models import User
+from django.db.utils import IntegrityError
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api', include('ecopulse_app.urls')),  # Include app URLs
 ]
+
+try:
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@example.com', 'capstone2026')
+        print("✅ Production Admin Created Successfully")
+except Exception as e:
+    pass
