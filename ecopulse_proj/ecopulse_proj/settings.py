@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.herokuapp.com', '.render.com', '.railway.app']
+ALLOWED_HOSTS = ['ecopulse-api-production.up.railway.app','127.0.0.1', 'localhost', '.herokuapp.com', '.render.com', '.railway.app']
 
 
 # Application definition
@@ -128,3 +128,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 APPEND_SLASH = True
+
+CSRF_TRUSTED_ORIGINS = ['https://ecopulse-api-production.up.railway.app']
