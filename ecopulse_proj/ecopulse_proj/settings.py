@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'ecopulse_proj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+        'NAME': os.environ.get('MYSQL_DATABASE'),
+        'USER': os.environ.get('MYSQLUSER'),
+        'PASSWORD': os.environ.get('MYSQLPASSWORD'),
+        'HOST': os.environ.get('MYSQLHOST'),
+        'PORT': os.environ.get('MYSQLPORT'),
     }
 }
 
