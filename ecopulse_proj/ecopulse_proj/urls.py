@@ -26,7 +26,11 @@ urlpatterns = [
 
 try:
     if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'admin@example.com', 'capstone2026')
+        user = User.objects.create_superuser('admin', 'admin@example.com', 'capstone2026')
         print("✅ Production Admin Created Successfully")
+    else:
+        # Fix existing admin that has no profile
+        user = User.objects.get(username='admin')
+        UserProfile.objects.get_or_create(user=user)
 except Exception as e:
-    pass
+    print(f"❌ Error: {e}")

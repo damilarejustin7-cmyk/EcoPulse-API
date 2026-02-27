@@ -76,9 +76,12 @@ class UserProfile(models.Model):
     
 # Signal to automatically create or update UserProfile when a User is created or updated
 @receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
+def save_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
+    else:
+        UserProfile.objects.get_or_create(user=instance)
+        instance.userprofile.save()   
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
